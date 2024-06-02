@@ -23,6 +23,8 @@ fortify-light/
 │   └── vulnerabilities.csv
 ├── requirements.txt
 ├── validate.sh
+├── validate.sh
+├── validate.py
 └── README.md
 
 ## Requirements
@@ -99,3 +101,22 @@ The `tests` directory contains unit tests for the various scripts. To run the te
 
 This completes the creation of a comprehensive Git project structure for "fortify-light". You can now manage the project using Git and share it on GitHub.
 
+
+Note windows et test unitaire :
+Pour utiliser validate.sh sous Windows avec Visual Studio Code, il y a quelques étapes supplémentaires à suivre pour s’assurer que les scripts bash peuvent être exécutés correctement. Voici les étapes détaillées :
+
+	1.	Installer Git Bash : Git Bash permet d’exécuter des scripts bash sous Windows.
+	•	Téléchargez et installez Git pour Windows.
+	•	Pendant l’installation, choisissez d’utiliser Git Bash.
+	2.	Configurer Visual Studio Code :
+	•	Ouvrez Visual Studio Code.
+	•	Installez l’extension “Bash Debug” pour l’exécution et le débogage des scripts bash.
+	•	Configurez Git Bash comme terminal par défaut :
+	•	Ouvrez les paramètres de VS Code (Ctrl + ,).
+	•	Recherchez terminal integrated shell.
+	•	Dans Terminal > Integrated > Shell: Windows, choisissez le chemin de Git Bash (souvent C:\Program Files\Git\bin\bash.exe).
+	3.	Exécuter validate.sh dans Git Bash :
+	•	Ouvrez votre projet dans Visual Studio Code.
+	•	Ouvrez un terminal intégré (Ctrl + ).
+	•	Assurez-vous que le terminal intégré est configuré pour utiliser Git Bash.
+	•	Exécutez le script de validation :
