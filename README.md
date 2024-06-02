@@ -5,7 +5,7 @@
 Fortify Light is a lightweight project to fetch and store Fortify Software Security Center (SSC) data incrementally. It includes scripts to initialize a SQLite database, fetch data from SSC, extract metrics, and save them in a database.
 
 ## Project Structure
-fortify-light/
+ortify-light/
 ├── scripts/
 │   ├── fetch_data.py
 │   ├── initialize_db.py
@@ -13,16 +13,21 @@ fortify-light/
 │   ├── extract_metrics.py
 │   ├── save_metrics.py
 │   ├── copy_metrics.py
+│   ├── config.py
+│   ├── generate_token.py
+│   ├── encrypt.py
+│   ├── process_csv.py
 ├── tests/
 │   ├── test_fetch_data.py
 │   ├── test_initialize_db.py
 │   ├── test_extract_metrics.py
 │   ├── test_save_metrics.py
 │   ├── test_copy_metrics.py
+│   ├── test_process_csv.py
 ├── data/
 │   └── vulnerabilities.csv
+├── .env
 ├── requirements.txt
-├── validate.sh
 ├── validate.sh
 ├── validate.py
 └── README.md
@@ -42,9 +47,11 @@ fortify-light/
     ```
 
 2. Create a virtual environment and activate it:
-sh python3 -m venv venv source venv/bin/activate 
+sh
+python3 -m venv venv 
+source venv/bin/activate 
 
-	3.	Install the dependencies:
+3.	Install the dependencies:
 pip install -r requirements.txt
 
 Usage
@@ -72,34 +79,6 @@ Usage
 The `tests` directory contains unit tests for the various scripts. To run the tests, use:
     ```sh python -m unittest discover -s tests
 
-### Instructions for Uploading to GitHub
-
-1. Initialize a new Git repository:
-    ```sh
-    git init
-    ```
-
-2. Add all files to the repository:
-    ```sh
-    git add .
-    ```
-
-3. Commit the changes:
-    ```sh
-    git commit -m "Initial commit"
-    ```
-
-4. Add the remote repository (replace `<username>` and `<repository>` with your GitHub username and repository name):
-    ```sh
-    git remote add origin https://github.com/<username>/fortify-light.git
-    ```
-
-5. Push the changes to GitHub:
-    ```sh
-    git push -u origin master
-    ```
-
-This completes the creation of a comprehensive Git project structure for "fortify-light". You can now manage the project using Git and share it on GitHub.
 
 
 Note windows et test unitaire :

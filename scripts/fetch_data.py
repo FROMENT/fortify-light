@@ -1,9 +1,19 @@
 import requests
 import os
+from scripts.encrypt import decrypt_data, load_key
+from dotenv import load_dotenv
+from scripts.process_csv import issues_to_csv
+
+# Load environment variables
+load_dotenv()
 
 # Configuration from environment variables
-SSC_URL = os.getenv('SSC_URL', 'https://fortify-dev.tools.sap/ssc')
-AUTH_TOKEN = os.getenv('SSC_AUTH_TOKEN', 'your-auth-token')
+SSC_URL = os.getenv('SSC_URL')
+ENC_AUTH_TOKEN = os.getenv('SSC_AUTH_TOKEN')
+
+# Decrypt the token
+key = load_key('encryption.key')
+AUTH_TOKEN = decrypt_data(ENC_AUTH_TOKEN.encode(), key)
 
 # Headers for authentication
 headers = {
@@ -37,7 +47,9 @@ def fetch_updated_issues(project_version_id, last_update_date):
     params = {'q': f'lastUpdateDate:>{last_update_date}'}
     response = requests.get(url, headers=headers, params=params)
     if response.status_code == 200:
-        return response.json().get('data', [])
+        issues = response.json().get('data', [])
+        issues_to_csv(issues, 'data/vulnerabilities.csv')
+        return issues
     else:
         print(f"Error: {response.status_code} - {response.text}")
         return None
