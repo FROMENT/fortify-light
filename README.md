@@ -37,52 +37,80 @@ fortify-light/
 
 - Python 3.x
 - Fortify SSC
-- Environment variables: `SSC_URL`, `SSC_AUTH_TOKEN`
+- Environment variables: `SSC_URL`, `SSC_AUTH_TOKEN`, `SSC_ENC_USERNAME`, `SSC_ENC_PASSWORD`
 
 ## Installation
 
-1. Clone the repository:
+1. Clonez le dépôt :
     ```sh
     git clone https://github.com/yourusername/fortify-light.git
     cd fortify-light
     ```
 
-2. Create a virtual environment and activate it:
-sh
-python3 -m venv venv 
-source venv/bin/activate 
+2. Créez un environnement virtuel et activez-le :
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
+    ```
 
-3.	Install the dependencies:
-pip install -r requirements.txt
+3. Installez les dépendances :
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-Usage
+## Configuration
 
-	1.	Set up the environment variables:
+1. Exécutez le script de configuration pour définir les variables d'environnement et générer un token :
+    ```sh
+    python scripts/config.py
+    ```
 
+2. Sauvegardez la clé de chiffrement pour une utilisation ultérieure :
+    ```sh
+    python scripts/encrypt.py
+    ```
+
+## Usage
+
+1. Définissez les variables d'environnement :
+    ```sh
     export SSC_URL="https://your-ssc-url"
-    export SSC_AUTH_TOKEN="your-auth-token"
+    export SSC_AUTH_TOKEN="your-encrypted-auth-token"
+    export SSC_ENC_USERNAME="your-encrypted-username"
+    export SSC_ENC_PASSWORD="your-encrypted-password"
+    ```
 
-	2.	Run the main script:
-
+2. Exécutez le script principal :
+    ```sh
     python scripts/main.py
+    ```
 
- ## Functionality
+## Testing
 
-- `fetch_data.py`: Contains functions to fetch projects, versions, and issues from Fortify SSC.
-- `initialize_db.py`: Initializes the SQLite database.
-- `extract_metrics.py`: Extracts metrics from a CSV file.
-- `save_metrics.py`: Saves extracted metrics to the database.
-- `copy_metrics.py`: Copies metrics from the previous week if no changes are found.
-- `main.py`: Main script to orchestrate the process.
+1. Ouvrez Git Bash dans Visual Studio Code.
+2. Exécutez le script de validation :
+    ```sh
+    ./validate.sh
+    ```
 
-## Tests
+## Fonctionnalités
 
-The `tests` directory contains unit tests for the various scripts. To run the tests, use:
-    ```sh python -m unittest discover -s tests
+- `fetch_data.py` : Contient des fonctions pour récupérer les projets, versions et issues de Fortify SSC.
+- `initialize_db.py` : Initialise la base de données SQLite.
+- `extract_metrics.py` : Extrait les métriques à partir d'un fichier CSV.
+- `save_metrics.py` : Enregistre les métriques extraites dans la base de données.
+- `copy_metrics.py` : Copie les métriques de la semaine précédente si aucun changement n'est trouvé.
+- `main.py` : Script principal pour orchestrer le processus.
+- `config.py` : Script pour configurer les variables d'environnement.
+- `generate_token.py` : Script pour générer un token d'authentification.
+- `encrypt.py` : Script pour chiffrer et déchiffrer les données.
+- `process_csv.py` : Script pour traiter les issues et générer des fichiers CSV.
 
+## License
 
+Ce projet est sous licence MIT.
 
-Note windows et test unitaire :
+## Note windows et test unitaire :
 Pour utiliser validate.sh sous Windows avec Visual Studio Code, il y a quelques étapes supplémentaires à suivre pour s’assurer que les scripts bash peuvent être exécutés correctement. Voici les étapes détaillées :
 
 	1.	Installer Git Bash : Git Bash permet d’exécuter des scripts bash sous Windows.
