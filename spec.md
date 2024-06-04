@@ -145,3 +145,4 @@
   - `comment`: TEXT
   - `created_at`: TEXT NOT NULL
   - `FOREIGN KEY (vulnerability_id) REFERENCES vulnerabilities(id)`
+ 
