@@ -6,6 +6,7 @@ Fortify Light is a lightweight project to fetch and store Fortify Software Secur
 
 ## Project Structure
 fortify-light/
+
 ├── scripts/ 
 │   ├── fetch_data.py 
 │   ├── initialize_db.py 
